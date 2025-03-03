@@ -1,18 +1,24 @@
 # Networking-Fundamentals
 
-This project contains Python scripts that demonstrate key network security concepts, including **ARP Spoofing**, **TCP Hijacking**, and **Traceroute**. These scripts are educational and aim to show how certain attacks can be executed and what security risks exist in modern networks. 
+This project contains Python scripts that demonstrate key network security concepts, including ARP Spoofing, TCP Hijacking, Traceroute, DNS Server, and DNS Tunnel. These scripts are educational and aim to show how certain attacks can be executed and what security risks exist in modern networks.
 
 ## Features
 
-### 1. ARP Spoofing
-The ARP Spoofing script is designed to perform a man-in-the-middle (MITM) attack by poisoning the ARP tables of two devices. It allows an attacker to intercept traffic between the victim and the gateway (or router) by associating the attacker’s MAC address with the IP address of the gateway, making the victim send traffic to the attacker.
+1. **ARP Spoofing**  
+   The ARP Spoofing script is designed to perform a man-in-the-middle (MITM) attack by poisoning the ARP tables of two devices. It allows an attacker to intercept traffic between a victim and a gateway by associating the attacker’s MAC address with the gateway's IP address.
 
-### 2. TCP Hijacking
-This script extends the ARP Spoofing attack by performing **TCP Hijacking**. The script allows an attacker to intercept, alter, and inject malicious content into an ongoing TCP session. It starts with an ARP spoofing attack to position the attacker between the client and server and then hijacks TCP packets in transit.
+2. **TCP Hijacking**  
+   Extending the ARP Spoofing attack, the TCP Hijacking script enables interception, alteration, and injection of malicious content into an active TCP session. It positions the attacker between the client and server to hijack TCP packets in transit.
 
-### 3. Traceroute
-This script implements a custom traceroute tool that traces the path packets take to reach a specified destination. It utilizes ICMP and UDP protocols to send packets with incrementally increasing Time-To-Live (TTL) values, allowing it to identify each hop along the route. For each hop, the script attempts to resolve the IP addresses to hostnames and gathers geographical information such as country, region, and city using the IP-API service. Additionally, the script visualizes the traceroute results on an interactive map, enabling users to see the journey taken by the packets visually.
+3. **Traceroute**  
+   This custom traceroute tool uses ICMP and UDP protocols to send packets with incrementally increasing Time-To-Live (TTL) values, tracing the path packets take to a destination. For each hop, it resolves IP addresses to hostnames and gathers geographical data (country, region, city) using the IP-API service, with an interactive map visualization of the route.
 
-### Docker Testing
+4. **DNS Server**  
+   This component implements a minimal DNS server application inspired by course materials and online tutorials. It is configured to handle a custom domain and subdomain, allowing you to test DNS entries using tools like dig or nslookup.
 
-For testing the ARP spoofing and TCP hijacking, I used a Docker environment consisting of four containers: `client`, `server`, `middle`, and `router`. This configuration simulates a real-world attack scenario, where the `client` and `middle` containers are connected to the same network via the `router`. The `docker-compose.yml` file defines the services and their relationships, specifying IP addresses and enabling necessary privileges for network operations. To generate traffic between the `client` and `server`, I utilized `tcp_client.py` and `tcp_server.py` scripts, facilitating the monitoring and manipulation of packets as they traverse the network.
+5. **DNS Tunnel**  
+   The DNS Tunnel script demonstrates how to create a covert data channel by utilizing malformed DNS packets. It implements a client-server model for file transfer over DNS, featuring mechanisms (such as stop-and-wait or sliding window) to handle UDP packet loss and ensure complete file transmission verified by an MD5 checksum.
+
+## Docker Testing
+
+For testing the ARP spoofing and TCP hijacking functionalities, a Docker environment was set up with four containers: client, server, middle, and router. This configuration simulates a real-world attack scenario, where the client and middle containers share a network via the router. The `docker-compose.yml` file defines the services, their relationships, IP addresses, and necessary network privileges. Additionally, the `tcp_client.py` and `tcp_server.py` scripts are used to generate traffic between the client and server, facilitating packet monitoring and manipulation as they traverse the network.
