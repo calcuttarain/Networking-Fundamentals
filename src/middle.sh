@@ -1,5 +1,4 @@
 #!/bin/bash
-set ff=unix
 # add route to subnet 198.7.0.0/16 via IP 172.7.0.1
 ip route add 172.7.0.0/16 via 198.7.0.1
 # add 8.8.8.8 nameserver

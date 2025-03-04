@@ -1,5 +1,4 @@
 #!/bin/bash
-set ff=unix
 # remove default gateway 172.7.1.1
 ip route del default
 # make router container the default router

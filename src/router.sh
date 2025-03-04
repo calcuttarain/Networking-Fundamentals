@@ -1,5 +1,4 @@
 #!/bin/bash
-set ff=unix
 # we need to drop the kernel reset of hand-coded tcp connections
 # https://stackoverflow.com/a/8578541
 # and redirect incoming traffic
